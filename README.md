@@ -11,14 +11,14 @@ df = pd.read_csv('student_scores.csv')
 ```python
 df.head() # 默认是显示前5行，也可以显示指定的行数，如df.head(2)只显示前2行
 ```
-输出结果：
-![图1](http://baidu.com/pic/doge.png)<br>
+输出结果：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/1.png" width="50%" height="50%" /><br>
 请记住，CSV 代表逗号分隔值，但这些值实际可用不同的字符、制表符、空格等分隔。例如，如果文件用逗号分隔，仍然可以将 `read_csv()` 与 `sep` 参数一起使用。
 ```python
 df = pd.read_csv('student_scores.csv', sep=':')
 df.head()
 ```
-![图2](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/2.png" width="50%" height="50%" /><br>
 明显没有成功，因为 CSV 文件是用逗号分隔的。由于没有冒号，没有被分隔的值，所有值都被读取到一个列！
 ### 1.1 标题
 `read_csv` 的另一个功能是指定文件的哪一行作为标题，而标题指定了列标签。通常第一行是标题，但有时如果文件顶部有额外的元信息，我们希望指定另一行作为标题。可以这样操作。
@@ -26,33 +26,33 @@ df.head()
 df = pd.read_csv('student_scores.csv', header=2)
 df.head()
 ```
-![图3](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/3.png" width="50%" height="50%" /><br>
 ```python
 df = pd.read_csv('student_scores.csv', header=None)
 df.head()
 ```
-![图4](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/4.png" width="50%" height="50%" /><br>
 还可以用以下方法自己指定列标签。
 ```python
 labels = ['id', 'name', 'attendance', 'hw', 'test1', 'project1', 'test2', 'project2', 'final']
 df = pd.read_csv('student_scores.csv', names=labels)
 df.head()
 ```
-![图5](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/5.png" width="50%" height="50%" /><br>
 如果想告诉 pandas，正在替换的数据包含标题行，可以用以下方法指定这一行。
 ```python
 labels = ['id', 'name', 'attendance', 'hw', 'test1', 'project1', 'test2', 'project2', 'final']
 df = pd.read_csv('student_scores.csv', header=0, names=labels)
 df.head()
 ```
-![图6](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/6.png" width="50%" height="50%" /><br>
 ### 1.2 索引
 除使用默认索引（从 0 递增 1 的整数）之外，还可以将一个或多个列指定为数据框的索引。
 ```python
 df = pd.read_csv('student_scores.csv', index_col='Name')
 df.head()
 ```
-![图7](http://baidu.com/pic/doge.png)<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/7.png" width="50%" height="50%" /><br>
 ```python
 df = pd.read_csv('student_scores.csv', index_col=['Name', 'ID'])
 df.head()
