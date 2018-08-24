@@ -11,13 +11,14 @@ df = pd.read_csv('student_scores.csv')
 ```python
 df.head() # 默认是显示前5行，也可以显示指定的行数，如df.head(2)只显示前2行
 ```
-输出结果：<br>
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/1.png" width="50%" height="50%" /><br>
 请记住，CSV 代表逗号分隔值，但这些值实际可用不同的字符、制表符、空格等分隔。例如，如果文件用逗号分隔，仍然可以将 `read_csv()` 与 `sep` 参数一起使用。
 ```python
 df = pd.read_csv('student_scores.csv', sep=':')
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/2.png" width="50%" height="50%" /><br>
 明显没有成功，因为 CSV 文件是用逗号分隔的。由于没有冒号，没有被分隔的值，所有值都被读取到一个列！
 ### 1.1 标题
@@ -26,11 +27,13 @@ df.head()
 df = pd.read_csv('student_scores.csv', header=2)
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/3.png" width="50%" height="50%" /><br>
 ```python
 df = pd.read_csv('student_scores.csv', header=None)
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/4.png" width="50%" height="50%" /><br>
 还可以用以下方法自己指定列标签。
 ```python
@@ -38,6 +41,7 @@ labels = ['id', 'name', 'attendance', 'hw', 'test1', 'project1', 'test2', 'proje
 df = pd.read_csv('student_scores.csv', names=labels)
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/5.png" width="50%" height="50%" /><br>
 如果想告诉 pandas，正在替换的数据包含标题行，可以用以下方法指定这一行。
 ```python
@@ -45,6 +49,7 @@ labels = ['id', 'name', 'attendance', 'hw', 'test1', 'project1', 'test2', 'proje
 df = pd.read_csv('student_scores.csv', header=0, names=labels)
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/6.png" width="50%" height="50%" /><br>
 ### 1.2 索引
 除使用默认索引（从 0 递增 1 的整数）之外，还可以将一个或多个列指定为数据框的索引。
@@ -52,9 +57,50 @@ df.head()
 df = pd.read_csv('student_scores.csv', index_col='Name')
 df.head()
 ```
+output：<br>
 <img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/7.png" width="50%" height="50%" /><br>
 ```python
 df = pd.read_csv('student_scores.csv', index_col=['Name', 'ID'])
 df.head()
 ```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/8.png" width="50%" height="50%" /><br>
 这个功能可单独用于进行多种操作，例如解析日期、填充空值、跳行等。可以在  `read_csv()` 后面进行不同步骤，实现这些操作。可以在 [这里：pandas 读取csv文档](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html) 查看如何用这个功能进行操作。
+# 2. 评估和理解数据（建立直觉）
+一旦将数据加载到数据框中，Pandas 会非常简单、快速地对数据进行调查。这里使用另外一份癌症数据。
+```python
+import pandas as pd
+df = pd.read_csv('cancer_data.csv')
+df.head() # 返回数据框中的前几行，默认返回前五行，也可以显示指定的行数，如df.head(2)只显示前两行
+```
+
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
+```python
+
+```
