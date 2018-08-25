@@ -84,19 +84,19 @@ output：(735, 9)
 df.dtypes
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/10.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/10.png" width="20%" height="20%" /><br>
 ```python
 # 显示数据框的简明摘要，包括每列非空值的数量
 df.info()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/11.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/11.png" width="40%" height="40%" /><br>
 ```python
 # 返回每列数据的有效描述性统计
 df.describe()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/12.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/12.png" width="70%" height="70%" /><br>
 ```python
 # `.tail()` 返回最后几行，但是也可以指定你希望返回的行数
 df.tail(2)
@@ -111,7 +111,7 @@ for i, v in enumerate(df.columns):
     print(i, v)
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/14.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/14.png" width="15%" height="15%" /><br>
 可以使用 `loc` 和 `iloc` 选择数据。可以点击  [这里](https://pandas.pydata.org/pandas-docs/stable/indexing.html)，了解  `loc` 和 `iloc` 的更多信息。`loc` 使用行标签或列标签选择数据，而 `iloc` 使用索引号。
 ```python
 # 使用loc选择从 'id' 到 '收入' 列
@@ -119,14 +119,14 @@ df1 = df.loc[:,'id':'收入']
 df1.head()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/15.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/15.png" width="20%" height="20%" /><br>
 ```python
 # 使用iloc重复以上步骤
 df1 = df.iloc[:,:5]
 df1.head()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/16.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/16.png" width="20%" height="20%" /><br>
 ## 2.2 在 Pandas 中选择多个范围
 选择上述数据框的列非常简单，因为需要选择的列都在一起。但如果所需列是分开的，无法在一个范围内指定全部，就需要用其他方法。[点击这里：stackoverflow 链接](https://stackoverflow.com/questions/41256648/select-multiple-ranges-of-columns-in-pandas-dataframe) 学习如何在 Pandas 中选择多个范围。<br>
 假设我们需要筛选出 `id` 、`年龄`、 `收入`、 `其他负债` 列的数据。
@@ -137,18 +137,18 @@ df2 = df.iloc[:, np.r_[0:2, 4, 7]]
 df2.head()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/17.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/17.png" width="20%" height="20%" /><br>
 ```python
 # 另一种方法
 df2 = df[['id', '年龄', '收入', '其他负债']]
 df2.head()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/18.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/18.png" width="20%" height="20%" /><br>
 ## 3. 清理数据
 练习缺失值和重复值的处理。
-# 读入 `bankloan.csv`
 ```python
+# 读入 `bankloan.csv`
 import pandas as pd
 df = pd.read_csv('bankloan.csv', encoding='gbk')
 ```
@@ -158,7 +158,7 @@ df = pd.read_csv('bankloan.csv', encoding='gbk')
 df.info()
 ```
 output：<br>
-<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/19.png" width="50%" height="50%" /><br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/19.png" width="20%" height="20%" /><br>
 ```python
 # 用pandas的fillna函数将平均值填充到各空值处
 df.fillna(df.mean(), inplace=True) #inplace参数为True时表示在源表上进行更改，False时不会改变源表
@@ -174,21 +174,114 @@ output：<br>41
 ```python
 # 丢弃重复
 df.drop_duplicates(inplace=True) #inplace参数为True时表示在源表上进行更改，False时不会改变源表
-```
-```python
 # 再次检查数据中的重复，确认修改
 sum(df.duplicated())
 ```
 output：<br>0
+## 3.3 数据类型的转化
+使用pandas的astype函数将 `年龄`、 `教育`、 `工龄` 列转换为 `int` 型
 ```python
-
+df['年龄'] = df['年龄'].astype(int)
+df['教育'] = df['教育'].astype(int)
+df['工龄'] = df['工龄'].astype(int)
+# 用 info() 确认修改
+df.info()
 ```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/21.png" width="20%" height="20%" /><br>
+## 3.4 重命名列
+在绘制图形时，多数不支持中文，因此可以重命名列，使用的是 `rename` 方法。
 ```python
-
+df1 = df.rename(columns={'年龄':'age', '教育':'education', '工龄':'w_age', '收入':'income', 
+                         '负债率':'debt_ratio', '信用卡负债':'cardloan', '其他负债':'o_loan', '违约':'default'})
+df1.head()
 ```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/22.png" width="20%" height="20%" /><br>
+# 4. 得出结论
+由于此篇为基础版，因此没有涉及过多的数据分析、机器学习的方法，主要回答以下的几个问题得出分析的结论。<br>
+1.30岁（含）以下人群的总收入与信用卡总负债情况<br>
+2.30岁（含）以下人群、31岁到39岁及40岁（含）以上人群的总收入总比情况
 ```python
-
+% matplotlib inline
+# 探索数据，为所有的变量绘制柱状图，了解大概分布情况
+df1.hist(figsize=(8, 8))
 ```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/23.png" /><br>
 ```python
-
+# 30岁（含）以下人群的总收入与信用卡总负债情况
+df2 = df1[df1['age'] <= 30]
+print("30岁（含）以下人群的总收入约为 %d 元。" % df2['income'].sum())
+print("30岁（含）以下人群的信用卡总负债约为 %d 元。" % df2['cardloan'].sum())
 ```
+output：<br>
+30岁（含）以下人群的总收入约为 6806 元。<br>
+30岁（含）以下人群的信用卡总负债约为 219 元。
+```python
+# 30岁（含）以下人群、31岁到39岁及40岁（含）以上人群的总收入总比情况
+df3 = df1[(df1['age'] > 30) & (df1['age'] < 40)]
+df4 = df1[df1['age'] >= 40]
+
+total = df1['income'].sum()
+print("0岁（含）以下人群总收入占比为 %.2f 。" % (df2['income'].sum() / total))
+print("31岁到39岁人群总收入占比为 %.2f 。" % (df3['income'].sum() / total))
+print("40岁（含）以上人群总收入占比为 %.2f 。" % (df4['income'].sum() / total))
+```
+output：<br>
+0岁（含）以下人群总收入占比为 0.21 。<br>
+31岁到39岁人群总收入占比为 0.34 。<br>
+40岁（含）以上人群总收入占比为 0.45 。
+# 5. 传达结果（创建具有适当标签、颜色和尺寸的图）
+```python
+import matplotlib.pyplot as plt
+
+X=['total_income', 'total_cardloan']
+Y=[df2['income'].sum(),df2['cardloan'].sum()] 
+fig = plt.figure()
+plt.bar(X,Y,0.4,color="blue")
+plt.xlabel("Class")
+plt.ylabel("Cash")
+plt.title("income VS cardloan of age lower than 30")
+```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/24.png" width="50%" height="50%" /><br>
+```python
+# 30岁（含）以下人群、31岁到39岁及40岁（含）以上人群的总收入总比情况
+
+labels = 'age<=30', '30<age<40', 'age>=40'
+fracs = [df2['income'].sum() / total, df3['income'].sum() / total, df4['income'].sum() / total]
+explode = [0, 0, 0.1] # 0.1 凸出这部分，
+plt.axes(aspect=1)  # Figure is round, otherwise it is an ellipse
+plt.pie(x=fracs, labels=labels, explode=explode,autopct='%3.1f %%',
+        shadow=True, labeldistance=1.1, startangle = 90,pctdistance = 0.5)
+plt.title("Percentage of total income in different age groups")
+'''
+labeldistance，文本的位置离远点有多远，1.1指1.1倍半径的位置
+autopct，圆里面的文本格式，%3.1f%%表示小数有三位，整数有一位的浮点数
+shadow，饼是否有阴影
+startangle，起始角度，0，表示从0开始逆时针转，为第一块。一般选择从90度开始比较好看
+pctdistance，百分比的text离圆心的距离
+'''
+```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/25.png" width="50%" height="50%" /><br>
+# 6. 简单可视化
+```python
+# 绘制收入与信用卡负债之间的关系图
+df1.plot(x='income', y='cardloan', kind='scatter')
+```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/26.png" width="50%" height="50%" /><br>
+```python
+# 绘制学历分布图
+df1['education'].hist()
+```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/27.png" width="50%" height="50%" /><br>
+```python
+# 绘制工龄变量的箱线图
+df1['w_age'].plot(kind='box')
+```
+output：<br>
+<img src="https://github.com/lubin007/Data-analysis-process/blob/master/img/28.png" width="50%" height="50%" /><br>
